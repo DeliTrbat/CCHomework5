@@ -1,0 +1,206 @@
+openapi: 3.0.0
+paths:
+  /file-system/create:
+    post:
+      operationId: FileSystemController_createFile
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateFileDto'
+      responses:
+        '201':
+          description: ''
+      tags:
+        - file-system
+  /file-system/delete:
+    delete:
+      operationId: FileSystemController_deleteFile
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - file-system
+  /file-system/move:
+    put:
+      operationId: FileSystemController_moveFile
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MoveFileDto'
+      responses:
+        '200':
+          description: ''
+      tags:
+        - file-system
+  /file-system/upload:
+    post:
+      operationId: FileSystemController_uploadFile
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UploadFileDto'
+      responses:
+        '201':
+          description: ''
+      tags:
+        - file-system
+  /file-system/download:
+    get:
+      operationId: FileSystemController_downloadFile
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - file-system
+  /file-system/share:
+    put:
+      operationId: FileSystemController_shareFile
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ShareFileDto'
+      responses:
+        '200':
+          description: ''
+      tags:
+        - file-system
+  /auth/login:
+    post:
+      operationId: AuthController_login
+      parameters: []
+      requestBody:
+        required: true
+        description: Login a user
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginDto'
+      responses:
+        '201':
+          description: ''
+      tags:
+        - auth
+  /auth/register:
+    post:
+      operationId: AuthController_register
+      parameters: []
+      requestBody:
+        required: true
+        description: Register a user
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterDto'
+      responses:
+        '201':
+          description: ''
+      tags:
+        - auth
+info:
+  title: Cute Name
+  description: |-
+    This technical report presents a proposed project for developing a file storage
+        website with a secure shell (SSH) frontend and a file viewing application. The purpose
+        of this project is to provide users with a convenient platform to store and access their
+        files in various formats. The report covers a case study, technical details of existing
+        solutions, overview of technologies, business canvas, architectural diagram, use-case
+        diagrams, and API documentation.
+  version: '1.0'
+  contact:
+    name: Echipa CC
+    url: http: //localhost:3000
+    email: temp@mail.com
+tags: []
+servers: []
+components:
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      type: http
+  schemas:
+    CreateFileDto:
+      type: object
+      properties:
+        key:
+          type: string
+        file:
+          type: string
+      required:
+        - key
+        - file
+    MoveFileDto:
+      type: object
+      properties:
+        key:
+          type: string
+        source:
+          type: string
+        dest:
+          type: string
+      required:
+        - key
+        - source
+        - dest
+    UploadFileDto:
+      type: object
+      properties:
+        key:
+          type: string
+        file:
+          type: string
+      required:
+        - key
+        - file
+    ShareFileDto:
+      type: object
+      properties:
+        key:
+          type: string
+        source:
+          type: string
+        dist:
+          type: string
+        file:
+          type: string
+      required:
+        - key
+        - source
+        - dist
+        - file
+    LoginDto:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+      required:
+        - username
+        - password
+    RegisterDto:
+      type: object
+      properties:
+        username:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+      required:
+        - username
+        - email
+        - password
